@@ -1,0 +1,42 @@
+📘 OPERACIONES BÁSICAS EN LOS CONJUNTOS NUMÉRICOS
+🔹 1. Números Naturales (ℕ = {0, 1, 2, 3, …})
+Operación	¿Siempre posible?	Ejemplo	Observaciones
+Suma	✅ Sí	3 + 2 = 5	El resultado es siempre otro número natural.
+Resta	❌ No	2 - 5 = ❌	No se puede si el minuendo es menor que el sustraendo.
+Multiplicación	✅ Sí	4 × 3 = 12	Siempre posible entre naturales.
+División	❌ No	3 ÷ 2 = 1.5 ❌	El resultado puede no ser un natural.
+
+🔹 2. Números Enteros (ℤ = {…, -2, -1, 0, 1, 2, …})
+Operación	¿Siempre posible?	Ejemplo	Observaciones
+Suma	✅ Sí	-4 + 7 = 3	Cerrado bajo la suma.
+Resta	✅ Sí	-2 - 5 = -7	Siempre posible, resultado es un entero.
+Multiplicación	✅ Sí	-3 × 2 = -6	Producto de enteros siempre es un entero.
+División	❌ No	5 ÷ 2 = 2.5 ❌	El cociente puede no ser un entero.
+
+🔹 3. Números Racionales (ℚ = {a/b | a, b ∈ ℤ, b ≠ 0})
+Operación	¿Siempre posible?	Ejemplo	Observaciones
+Suma	✅ Sí	1/2 + 3/4 = 5/4	Se hace con común denominador.
+Resta	✅ Sí	3/5 - 1/2 = 1/10	Igual que la suma, con denominadores comunes.
+Multiplicación	✅ Sí	2/3 × 3/4 = 6/12 = 1/2	Se multiplican numeradores y denominadores.
+División	✅ Sí (≠ 0)	2/3 ÷ 4/5 = 2/3 × 5/4 = 10/12 = 5/6	Se multiplica por el inverso del divisor.
+
+🔹 4. Números Irracionales (ej. √2, π, e)
+Operación	¿Siempre posible?	Ejemplo	Observaciones
+Suma	✅ Sí	√2 + √3 ≈ 3.146	Resultado puede seguir siendo irracional.
+Resta	✅ Sí	π - √2 ≈ 1.57	Sigue siendo irracional o racional, según el caso.
+Multiplicación	✅ Sí	√2 × √2 = 2	A veces da un racional. Ej: √a × √a = a
+División	✅ Sí	π ÷ √2 ≈ 2.221	No se obtiene una fracción exacta, pero es un número real.
+
+🔹 5. Números Reales (ℝ = ℚ ∪ irracionales)
+Operación	¿Siempre posible?	Ejemplo	Observaciones
+Suma	✅ Sí	2.5 + √3 ≈ 4.232	Se suman como decimales o se deja en forma simbólica.
+Resta	✅ Sí	π - 1.5 ≈ 1.641	Siempre definida.
+Multiplicación	✅ Sí	√2 × π ≈ 4.442	Puede ser irracional o racional.
+División	✅ Sí (≠ 0)	3.5 ÷ π ≈ 1.114	Siempre que el divisor no sea cero.
+
+🔹 6. Números Complejos (ℂ = a + bi, con i² = -1)
+Operación	¿Siempre posible?	Ejemplo	Observaciones
+Suma	✅ Sí	(2 + 3i) + (1 - i) = 3 + 2i	Se suman partes reales y partes imaginarias por separado.
+Resta	✅ Sí	(4 + i) - (1 + 2i) = 3 - i	Igual que la suma.
+Multiplicación	✅ Sí	(2 + i)(1 - i) = 2 - 2i + i - i² = 3 - i	Se aplica propiedad distributiva y i² = -1.
+División	✅ Sí	(3 + 2i) ÷ (1 - i) = …	Se racionaliza multiplicando por el conjugado del denominador.

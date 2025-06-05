@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios por Conjunto Numérico - Carlos Angulo</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#dc2626',
+                        secondary: '#991b1b',
+                        accent: '#ef4444',
+                        dark: '#111827',
+                        'dark-light': '#1f2937',
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #111827 0%, #374151 50%, #dc2626 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: true,
+                packages: ['base', 'ams']
+            },
+            loader: {load: ['[tex]/ams']},
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <nav class="bg-gray-900/98 backdrop-blur-md shadow-2xl fixed w-full top-0 z-50 border-b border-gray-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-5">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary via-red-500 to-secondary rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                        <span class="text-white font-bold text-xl">CA</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white leading-tight">Carlos Angulo</h1>
+                        <p class="text-gray-400 text-sm">Desarrollador & Educador</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-10">
+                    <a href="index.html#inicio" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Inicio
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="index.html#sobre-mi" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Sobre Mí
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="operaciones.html" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Conjuntos
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="operaciones1.html" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Operaciones
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="text-primary font-medium relative group py-2">
+                        Ejercicios
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300"></span>
+                    </a>
+                    <a href="index.html#contacto" class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                        Contacto
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-300 hover:text-primary transition duration-300 p-2">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="md:hidden bg-gray-900 shadow-2xl absolute top-full left-0 right-0 border-t border-gray-700 hidden">
+        <div class="px-4 py-4 space-y-3">
+            <a href="index.html#inicio" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Inicio</a>
+            <a href="index.html#sobre-mi" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Sobre Mí</a>
+            <a href="operaciones.html" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Conjuntos</a>
+            <a href="operaciones1.html" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Operaciones</a>
+            <a href="#" class="block py-3 text-primary transition duration-300 border-b border-gray-700">Ejercicios</a>
+            <a href="index.html#contacto" class="block py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg text-center font-semibold hover:shadow-lg transition duration-300 mt-2">Contacto</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg pt-24 pb-20 px-4">
+        <div class="max-w-6xl mx-auto text-center text-white fade-in">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                Ejercicios por Conjunto Numérico
+            </h1>
+            <p class="text-xl opacity-90 max-w-4xl mx-auto mb-10">
+                Practica y refuerza tus conocimientos con ejercicios específicos para cada conjunto
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid gap-8">
+                <!-- Números Naturales -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                            <span class="text-4xl font-bold text-blue-600">ℕ</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Números Naturales</h3>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                        <p class="text-blue-800 font-semibold mb-4">🔍 Regla:</p>
+                        <p class="text-blue-700">No cerrados bajo la resta y división; cerrados bajo suma y multiplicación.</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-gray-700 mb-3">Ejercicio:</h4>
+                            <p class="text-gray-600">Una caja contiene 24 lápices. Si se reparten en partes iguales entre 5 estudiantes, ¿cuántos lápices recibe cada uno y cuántos sobran?</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-700 font-semibold">💡 Concepto aplicado:</p>
+                            <p class="text-gray-600">La división en ℕ no siempre es exacta. Se interpreta con cociente y residuo (división entera).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Números Enteros -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                            <span class="text-4xl font-bold text-green-600">ℤ</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Números Enteros</h3>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg mb-6">
+                        <p class="text-green-800 font-semibold mb-4">🔍 Regla:</p>
+                        <p class="text-green-700">Cerrado bajo suma, resta y multiplicación; no cerrado bajo división.</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-gray-700 mb-3">Ejercicio:</h4>
+                            <p class="text-gray-600">Evalúa la siguiente expresión:</p>
+                            <p class="text-lg font-semibold text-gray-800 mt-2">(-3) × (5 − 8) + |−10 ÷ 2|</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-700 font-semibold">💡 Concepto aplicado:</p>
+                            <p class="text-gray-600">Operaciones combinadas, valor absoluto, uso de signos y no cierre de ℤ bajo división.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Números Racionales -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center">
+                            <span class="text-4xl font-bold text-yellow-600">ℚ</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Números Racionales</h3>
+                    </div>
+                    <div class="bg-yellow-50 p-6 rounded-lg mb-6">
+                        <p class="text-yellow-800 font-semibold mb-4">🔍 Regla:</p>
+                        <p class="text-yellow-700">Cerrado bajo las 4 operaciones; se requiere manejo de fracciones e inversos multiplicativos.</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-gray-700 mb-3">Ejercicio:</h4>
+                            <p class="text-gray-600">Resuelve la expresión:</p>
+                            <p class="text-lg font-semibold text-gray-800 mt-2">$(\frac{3}{4} + \frac{2}{3}) \div (\frac{5}{6} - \frac{1}{2})$</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-700 font-semibold">💡 Concepto aplicado:</p>
+                            <p class="text-gray-600">Suma y resta con mínimo común denominador + división de fracciones usando el inverso.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Números Irracionales -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                            <span class="text-4xl font-bold text-red-600">𝕀</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Números Irracionales</h3>
+                    </div>
+                    <div class="bg-red-50 p-6 rounded-lg mb-6">
+                        <p class="text-red-800 font-semibold mb-4">🔍 Regla:</p>
+                        <p class="text-red-700">No cerrados bajo suma o multiplicación en general; pueden generar racionales si se combinan con su conjugado.</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-gray-700 mb-3">Ejercicio:</h4>
+                            <p class="text-gray-600">Simplifica la siguiente expresión:</p>
+                            <p class="text-lg font-semibold text-gray-800 mt-2">$(\sqrt{2} + 1)(\sqrt{2} - 1)$</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-700 font-semibold">💡 Concepto aplicado:</p>
+                            <p class="text-gray-600">Producto de conjugados de radicales irracionales → resultado racional (identidad notable).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Números Complejos -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
+                            <span class="text-4xl font-bold text-orange-600">ℂ</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Números Complejos</h3>
+                    </div>
+                    <div class="bg-orange-50 p-6 rounded-lg mb-6">
+                        <p class="text-orange-800 font-semibold mb-4">🔍 Regla:</p>
+                        <p class="text-orange-700">Se opera con partes reales e imaginarias; para dividir, se usa el conjugado.</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-gray-700 mb-3">Ejercicio:</h4>
+                            <p class="text-gray-600">Calcula:</p>
+                            <p class="text-lg font-semibold text-gray-800 mt-2">$\frac{3 + 4i}{1 - 2i}$</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-700 font-semibold">💡 Concepto aplicado:</p>
+                            <p class="text-gray-600">División de números complejos usando el conjugado del denominador.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4 mt-12">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400">© 2025 Carlos Angulo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+                mobileMenu.style.display = 'block';
+            } else {
+                mobileMenu.style.display = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.style.display = 'none';
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-gray-900/98');
+                nav.classList.remove('bg-gray-900/95');
+            } else {
+                nav.classList.add('bg-gray-900/95');
+                nav.classList.remove('bg-gray-900/98');
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+EJERCICIOS COMPLEJOS POR CONJUNTO NUMÉRICO
+(Uno por conjunto, con énfasis en reglas internas)
+
+🔸 1. Números Naturales (ℕ)
+🔍 Regla: No cerrados bajo la resta y división; cerrados bajo suma y multiplicación.
+
+Ejercicio:
+Una caja contiene 24 lápices. Si se reparten en partes iguales entre 5 estudiantes, ¿cuántos lápices recibe cada uno y cuántos sobran?
+
+💡 Concepto aplicado: La división en ℕ no siempre es exacta. Se interpreta con cociente y residuo (división entera).
+
+🔸 2. Números Enteros (ℤ)
+🔍 Regla: Cerrado bajo suma, resta y multiplicación; no cerrado bajo división.
+
+Ejercicio:
+Evalúa la siguiente expresión:
+(-3) × (5 − 8) + |−10 ÷ 2|
+
+💡 Concepto aplicado: Operaciones combinadas, valor absoluto, uso de signos y no cierre de ℤ bajo división.
+
+🔸 3. Números Racionales (ℚ)
+🔍 Regla: Cerrado bajo las 4 operaciones; se requiere manejo de fracciones e inversos multiplicativos.
+
+Ejercicio:
+Resuelve la expresión:
+
+(
+3
+4
++
+2
+3
+)
+÷
+(
+5
+6
+−
+1
+2
+)
+( 
+4
+3
+​
+ + 
+3
+2
+​
+ )÷( 
+6
+5
+​
+ − 
+2
+1
+​
+ )
+💡 Concepto aplicado: Suma y resta con mínimo común denominador + división de fracciones usando el inverso.
+
+🔸 4. Números Irracionales
+🔍 Regla: No cerrados bajo suma o multiplicación en general; pueden generar racionales si se combinan con su conjugado.
+
+Ejercicio:
+Simplifica la siguiente expresión:
+
+(
+2
++
+1
+)
+(
+2
+−
+1
+)
+( 
+2
+​
+ +1)( 
+2
+​
+ −1)
+💡 Concepto aplicado: Producto de conjugados de radicales irracionales → resultado racional (identidad notable).
+
+🔸 5. Números Complejos (ℂ)
+🔍 Regla: Se opera con partes reales e imaginarias; para dividir, se usa el conjugado.
+
+Ejercicio:
+Calcula:
+
+3
++
+4
+𝑖
+1
+−
+2
+𝑖
+1−2i
+3+4i
+​
+ 
+💡 Concepto aplicado: Racionalización con el conjugado del denominador y simplificación en forma a + bi.
+

@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones Básicas con Números Reales - Clase Matemáticas</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#dc2626',
+                        secondary: '#991b1b',
+                        accent: '#ef4444',
+                        dark: '#111827',
+                        'dark-light': '#1f2937',
+                        'math-blue': '#1e40af',
+                        'math-green': '#16a34a',
+                        'math-purple': '#9333ea',
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #111827 0%, #374151 50%, #dc2626 100%);
+        }
+        .math-gradient {
+            background: linear-gradient(135deg, #1e40af 0%, #9333ea 50%, #16a34a 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .math-symbol {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc2626;
+        }
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #dc2626, transparent);
+            height: 2px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header/Navbar -->
+    <nav class="bg-gray-900/98 backdrop-blur-md shadow-2xl fixed w-full top-0 z-50 border-b border-gray-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-math-blue via-math-purple to-math-green rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                        <span class="text-white font-bold text-xl">∑</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-white leading-tight">Matemáticas Básicas</h1>
+                        <p class="text-gray-400 text-sm">Números Reales & Operaciones</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Inicio
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#numeros-reales" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Números Reales
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#operaciones" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Operaciones
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#ejercicios" class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                        Ejercicios
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-300 hover:text-primary transition duration-300 p-2">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="math-gradient pt-24 pb-20 px-4 min-h-screen flex items-center">
+        <div class="max-w-6xl mx-auto text-center text-white fade-in w-full">
+            <div class="mb-8">
+                <!-- Mensaje de Bienvenida -->
+                <div class="mb-8">
+                    <span class="inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-full text-lg font-medium mb-6">
+                        📚 Clase de Matemáticas 📚
+                    </span>
+                </div>
+                
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                    Operaciones Básicas
+                </h1>
+                
+                <div class="text-2xl md:text-3xl mb-8 max-w-4xl mx-auto font-medium">
+                    con Números Reales (ℝ)
+                </div>
+                
+                <p class="text-lg md:text-xl opacity-90 max-w-4xl mx-auto mb-10 leading-relaxed">
+                    Clase diseñada para estudiantes de 18-21 años. Aprenderemos sobre los conjuntos numéricos, 
+                    operaciones fundamentales y su aplicación en problemas de la vida cotidiana.
+                </p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-10">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <div class="math-symbol text-3xl mb-2">+</div>
+                        <p class="text-sm">Suma</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <div class="math-symbol text-3xl mb-2">−</div>
+                        <p class="text-sm">Resta</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <div class="math-symbol text-3xl mb-2">×</div>
+                        <p class="text-sm">Multiplicación</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <div class="math-symbol text-3xl mb-2">÷</div>
+                        <p class="text-sm">División</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="#numeros-reales" class="bg-white text-gray-900 px-10 py-4 rounded-full font-bold hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-white/25 hover:scale-105">
+                        Empezar la Clase
+                    </a>
+                    <a href="#ejercicios" class="border-2 border-white/50 text-white px-10 py-4 rounded-full font-bold hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm">
+                        Ver Ejercicios
+                    </a>
+                </div>
+                
+                <!-- Indicador de scroll -->
+                <div class="mt-16 animate-bounce">
+                    <svg class="w-6 h-6 mx-auto text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Números Reales -->
+    <section id="numeros-reales" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-block bg-gradient-to-r from-math-blue to-math-purple text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                    TEMA 1
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Los Números Reales (ℝ)
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprendamos la estructura fundamental de los números que utilizamos en matemáticas
+                </p>
+            </div>
+
+            <!-- Definición Principal -->
+            <div class="mb-16">
+                <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-math-blue text-white rounded-full flex items-center justify-center mr-3 text-sm">ℝ</span>
+                        ¿Qué son los Números Reales?
+                    </h3>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                        Los números reales (ℝ) son el conjunto de todos los números que pueden ser representados en la recta numérica real. 
+                        Incluyen tanto números racionales como irracionales, y forman la base de la mayoría de cálculos matemáticos.
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-math-blue p-4 rounded-r-lg">
+                        <p class="text-math-blue font-semibold">
+                            💡 Dato importante: Los números reales se extienden infinitamente en ambas direcciones de la recta numérica.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clasificación de Números -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Números Racionales -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-math-green text-white rounded-xl flex items-center justify-center mr-4">
+                            <span class="font-bold">ℚ</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Números Racionales</h3>
+                            <p class="text-gray-600">Se pueden expresar como fracción</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Enteros (ℤ)</h4>
+                            <p class="text-gray-700 text-sm mb-2">..., -3, -2, -1, 0, 1, 2, 3, ...</p>
+                            <p class="text-xs text-gray-600">Incluyen positivos, negativos y cero</p>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Naturales (ℕ)</h4>
+                            <p class="text-gray-700 text-sm mb-2">1, 2, 3, 4, 5, ...</p>
+                            <p class="text-xs text-gray-600">Números para contar</p>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Fracciones</h4>
+                            <p class="text-gray-700 text-sm mb-2">1/2, 3/4, -2/3, 0.5, 0.75</p>
+                            <p class="text-xs text-gray-600">a/b donde b ≠ 0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Números Irracionales -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-math-purple text-white rounded-xl flex items-center justify-center mr-4">
+                            <span class="font-bold">𝕀</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Números Irracionales</h3>
+                            <p class="text-gray-600">No se pueden expresar como fracción</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-purple-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Raíces</h4>
+                            <p class="text-gray-700 text-sm mb-2">√2 ≈ 1.414..., √3 ≈ 1.732...</p>
+                            <p class="text-xs text-gray-600">Decimales infinitos no periódicos</p>
+                        </div>
+                        
+                        <div class="bg-purple-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Constantes especiales</h4>
+                            <p class="text-gray-700 text-sm mb-2">π ≈ 3.14159..., e ≈ 2.71828...</p>
+                            <p class="text-xs text-gray-600">Importantes en geometría y cálculo</p>
+                        </div>
+                        
+                        <div class="bg-purple-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Logarítmicos</h4>
+                            <p class="text-gray-700 text-sm mb-2">log₂(3), ln(2), log₁₀(7)</p>
+                            <p class="text-xs text-gray-600">Relacionados con exponenciales</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recta Numérica -->
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 text-white mb-16">
+                <h3 class="text-2xl font-bold mb-6 text-center">La Recta Numérica Real</h3>
+                <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
+                    <div class="relative">
+                        <!-- Línea principal -->
+                        <div class="w-full h-1 bg-white rounded-full mb-4"></div>
+                        
+                        <!-- Marcadores -->
+                        <div class="flex justify-between items-center text-sm">
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-primary rounded-full mx-auto mb-1"></div>
+                                <span>-∞</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-math-green rounded-full mx-auto mb-1"></div>
+                                <span>-2</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-math-blue rounded-full mx-auto mb-1"></div>
+                                <span>0</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-math-purple rounded-full mx-auto mb-1"></div>
+                                <span>√2</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-math-green rounded-full mx-auto mb-1"></div>
+                                <span>π</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-primary rounded-full mx-auto mb-1"></div>
+                                <span>+∞</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center text-gray-300 mt-4">
+                    Todos los números reales pueden ubicarse en un punto específico de esta recta
+                </p>
+            </div>
+
+            <!-- Propiedades importantes -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-blue-50 rounded-xl p-6 border-l-4 border-math-blue">
+                    <h4 class="font-bold text-gray-900 mb-3">🔄 Densidad</h4>
+                    <p class="text-gray-700 text-sm">
+                        Entre cualquier par de números reales siempre existe otro número real.
+                    </p>
+                </div>
+                
+                <div class="bg-green-50 rounded-xl p-6 border-l-4 border-math-green">
+                    <h4 class="font-bold text-gray-900 mb-3">📏 Completitud</h4>
+                    <p class="text-gray-700 text-sm">
+                        No hay "huecos" en la recta real; cada punto corresponde a un número real.
+                    </p>
+                </div>
+                
+                <div class="bg-purple-50 rounded-xl p-6 border-l-4 border-math-purple">
+                    <h4 class="font-bold text-gray-900 mb-3">🔢 Orden</h4>
+                    <p class="text-gray-700 text-sm">
+                        Los números reales están totalmente ordenados: dados dos números, uno es mayor que el otro.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección: Operaciones Básicas -->
+    <section id="operaciones" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-block bg-gradient-to-r from-math-green to-math-blue text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                    TEMA 2
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Operaciones Básicas
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Las cuatro operaciones fundamentales con números reales y sus propiedades
+                </p>
+            </div>
+
+            <!-- Suma -->
+            <div class="mb-16">
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-math-green to-green-400 text-white rounded-2xl flex items-center justify-center mr-6">
+                            <span class="text-2xl font-bold">+</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Suma (Adición)</h3>
+                            <p class="text-gray-600">Combinar dos o más números</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Propiedades de la Suma</h4>
+                            <div class="space-y-3">
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Conmutativa</h5>
+                                    <p class="text-sm text-gray-700">a + b = b + a</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 3 + 5 = 5 + 3 = 8</p>
+                                </div>
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Asociativa</h5>
+                                    <p class="text-sm text-gray-700">(a + b) + c = a + (b + c)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: (2 + 3) + 4 = 2 + (3 + 4) = 9</p>
+                                </div>
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Elemento neutro</h5>
+                                    <p class="text-sm text-gray-700">a + 0 = a</p>
+                                    <p class="text-xs text-gray-600">El cero no cambia el resultado</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Ejemplos Prácticos</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Números positivos:</p>
+                                    <p class="text-sm text-gray-700">15 + 7 = 22</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Con números negativos:</p>
+                                    <p class="text-sm text-gray-700">-8 + 12 = 4</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Dos números negativos:</p>
+                                    <p class="text-sm text-gray-700">-5 + (-3) = -8</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Con decimales:</p>
+                                    <p class="text-sm text-gray-700">2.5 + 1.75 = 4.25</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resta -->
+            <div class="mb-16">
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-400 text-white rounded-2xl flex items-center justify-center mr-6">
+                            <span class="text-2xl font-bold">−</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Resta (Sustracción)</h3>
+                            <p class="text-gray-600">Encontrar la diferencia entre números</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Conceptos Importantes</h4>
+                            <div class="space-y-3">
+                                <div class="bg-red-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Definición</h5>
+                                    <p class="text-sm text-gray-700">a - b = a + (-b)</p>
+                                    <p class="text-xs text-gray-600">Restar es sumar el opuesto</p>
+                                </div>
+                                <div class="bg-red-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">No es conmutativa</h5>
+                                    <p class="text-sm text-gray-700">a - b ≠ b - a</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 8 - 3 = 5, pero 3 - 8 = -5</p>
+                                </div>
+                                <div class="bg-red-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Elemento neutro</h5>
+                                    <p class="text-sm text-gray-700">a - 0 = a</p>
+                                    <p class="text-xs text-gray-600">Restar cero no cambia el número</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Ejemplos Prácticos</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Números positivos:</p>
+                                    <p class="text-sm text-gray-700">20 - 7 = 13</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Restar un negativo:</p>
+                                    <p class="text-sm text-gray-700">5 - (-3) = 5 + 3 = 8</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Resultado negativo:</p>
+                                    <p class="text-sm text-gray-700">4 - 9 = -5</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Con decimales:</p>
+                                    <p class="text-sm text-gray-700">7.8 - 2.3 = 5.5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multiplicación -->
+            <div class="mb-16">
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-math-blue to-blue-400 text-white rounded-2xl flex items-center justify-center mr-6">
+                            <span class="text-2xl font-bold">×</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Multiplicación</h3>
+                            <p class="text-gray-600">Suma repetida o producto de factores</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Propiedades</h4>
+                            <div class="space-y-3">
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Conmutativa</h5>
+                                    <p class="text-sm text-gray-700">a × b = b × a</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 4 × 6 = 6 × 4 = 24</p>
+                                </div>
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Asociativa</h5>
+                                    <p class="text-sm text-gray-700">(a × b) × c = a × (b × c)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: (2 × 3) × 4 = 2 × (3 × 4) = 24</p>
+                                </div>
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Elemento neutro</h5>
+                                    <p class="text-sm text-gray-700">a × 1 = a</p>
+                                    <p class="text-xs text-gray-600">Multiplicar por 1 no cambia el número</p>
+                                </div>
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Distributiva</h5>
+                                    <p class="text-sm text-gray-700">a × (b + c) = a × b + a × c</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 3 × (2 + 4) = 3 × 2 + 3 × 4 = 18</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Reglas de Signos</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Positivo × Positivo:</p>
+                                    <p class="text-sm text-gray-700">(+) × (+) = (+)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 7 × 3 = 21</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Negativo × Negativo:</p>
+                                    <p class="text-sm text-gray-700">(-) × (-) = (+)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: (-4) × (-5) = 20</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Positivo × Negativo:</p>
+                                    <p class="text-sm text-gray-700">(+) × (-) = (-)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 6 × (-2) = -12</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Cualquier número × 0:</p>
+                                    <p class="text-sm text-gray-700">a × 0 = 0</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 100 × 0 = 0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- División -->
+            <div class="mb-16">
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-math-purple to-purple-400 text-white rounded-2xl flex items-center justify-center mr-6">
+                            <span class="text-2xl font-bold">÷</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">División</h3>
+                            <p class="text-gray-600">Repartir en partes iguales</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Conceptos Importantes</h4>
+                            <div class="space-y-3">
+                                <div class="bg-purple-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Definición</h5>
+                                    <p class="text-sm text-gray-700">a ÷ b = a × (1/b)</p>
+                                    <p class="text-xs text-gray-600">Dividir es multiplicar por el recíproco</p>
+                                </div>
+                                <div class="bg-purple-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">No es conmutativa</h5>
+                                    <p class="text-sm text-gray-700">a ÷ b ≠ b ÷ a</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 12 ÷ 3 = 4, pero 3 ÷ 12 = 0.25</p>
+                                </div>
+                                <div class="bg-purple-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Elemento neutro</h5>
+                                    <p class="text-sm text-gray-700">a ÷ 1 = a</p>
+                                    <p class="text-xs text-gray-600">Dividir por 1 no cambia el número</p>
+                                </div>
+                                <div class="bg-red-100 border border-red-300 rounded-lg p-4">
+                                    <h5 class="font-medium text-red-800 mb-1">⚠️ División por cero</h5>
+                                    <p class="text-sm text-red-700">a ÷ 0 = indefinido</p>
+                                    <p class="text-xs text-red-600">¡Nunca se puede dividir por cero!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Reglas de Signos</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Positivo ÷ Positivo:</p>
+                                    <p class="text-sm text-gray-700">(+) ÷ (+) = (+)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 15 ÷ 3 = 5</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Negativo ÷ Negativo:</p>
+                                    <p class="text-sm text-gray-700">(-) ÷ (-) = (+)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: (-20) ÷ (-4) = 5</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Positivo ÷ Negativo:</p>
+                                    <p class="text-sm text-gray-700">(+) ÷ (-) = (-)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 18 ÷ (-3) = -6</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Cero ÷ cualquier número:</p>
+                                    <p class="text-sm text-gray-700">0 ÷ a = 0 (si a ≠ 0)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 0 ÷ 7 = 0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orden de Operaciones -->
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
+                <h3 class="text-2xl font-bold mb-6 text-center">Orden de las Operaciones (PEMDAS)</h3>
+                <div class="grid md:grid-cols-5 gap-4 mb-6">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-2">( )</div>
+                        <h4 class="font-semibold mb-1">Paréntesis</h4>
+                        <p class="text-xs text-gray-300">Primero</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-2">^</div>
+                        <h4 class="font-semibold mb-1">Exponentes</h4>
+                        <p class="text-xs text-gray-300">Segundo</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-2">× ÷</div>
+                        <h4 class="font-semibold mb-1">Multiplicación</h4>
+                        <p class="text-xs text-gray-300">División</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-2">+ −</div>
+                        <h4 class="font-semibold mb-1">Suma</h4>
+                        <p class="text-xs text-gray-300">Resta</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-2">→</div>
+                        <h4 class="font-semibold mb-1">Izquierda</h4>
+                        <p class="text-xs text-gray-300">a Derecha</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
+                    <h4 class="font-semibold mb-3">Ejemplo paso a paso:</h4>
+                    <div class="space-y-2 font-mono">
+                        <p>2 + 3 × (4 - 1)²</p>
+                        <p>= 2 + 3 × (3)²</p>
+                        <p>= 2 + 3 × 9</p>
+                        <p>= 2 + 27</p>
+                        <p class="text-primary font-bold">= 29</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección: Ejercicios Prácticos -->
+    <section id="ejercicios" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-block bg-gradient-to-r from-math-purple to-primary text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                    PRÁCTICA
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Ejercicios Prácticos
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Pon a prueba tus conocimientos con estos problemas paso a paso
+                </p>
+            </div>
+
+            <!-- Problemas Resueltos -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">📚 Problemas Resueltos</h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Problema 1 -->
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border border-green-200">
+                        <div class="flex items-center mb-4">
+                            <span class="w-10 h-10 bg-math-green text-white rounded-full flex items-center justify-center font-bold mr-3">1</span>
+                            <h4 class="text-lg font-semibold text-gray-900">Problema de la vida real</h4>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <p class="text-gray-800 font-medium mb-2">📝 Enunciado:</p>
+                            <p class="text-gray-700">
+                                María tiene $50. Compra 3 libros que cuestan $12 cada uno y luego su hermana le da $15. 
+                                ¿Cuánto dinero tiene María al final?
+                            </p>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <p class="text-gray-800 font-medium mb-2">✅ Solución paso a paso:</p>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <p><strong>1.</strong> Dinero inicial: $50</p>
+                                <p><strong>2.</strong> Costo de libros: 3 × $12 = $36</p>
+                                <p><strong>3.</strong> Dinero después de comprar: $50 - $36 = $14</p>
+                                <p><strong>4.</strong> Dinero que recibe: $15</p>
+                                <p><strong>5.</strong> Dinero final: $14 + $15 = <span class="font-bold text-math-green">$29</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problema 2 -->
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200">
+                        <div class="flex items-center mb-4">
+                            <span class="w-10 h-10 bg-math-blue text-white rounded-full flex items-center justify-center font-bold mr-3">2</span>
+                            <h4 class="text-lg font-semibold text-gray-900">Operaciones con signos</h4>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <p class="text-gray-800 font-medium mb-2">📝 Calcular:</p>
+                            <p class="text-gray-700 font-mono text-lg">
+                                (-8) × 3 + (-12) ÷ 4 - (-5)
+                            </p>
+                        </div>
+                        
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <p class="text-gray-800 font-medium mb-2">✅ Solución paso a paso:</p>
+                            <div class="space-y-2 text-sm text-gray-700 font-mono">
+                                <p><strong>1.</strong> (-8) × 3 = -24</p>
+                                <p><strong>2.</strong> (-12) ÷ 4 = -3</p>
+                                <p><strong>3.</strong> -(-5) = +5</p>
+                                <p><strong>4.</strong> -24 + (-3) + 5</p>
+                                <p><strong>5.</strong> -24 - 3 + 5 = <span class="font-bold text-math-blue">-22</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problema 3 -->
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border border-purple-200">
+                        <div class="flex items-center mb-4">
+                            <span class="w-10 h-10 bg-math-purple text-white rounded-full flex items-center justify-center font-bold mr-3">3</span>
+                            <h4 class="text-lg font-semibold text-gray-900">Orden de operaciones</h4>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <p class="text-gray-800 font-medium mb-2">📝 Calcular:</p>
+                            <p class="text-gray-700 font-mono text-lg">
+                                5 + 2 × (8 - 3) ÷ 2
+                            </p>
+                        </div>
+                        
+                        <div class="bg-purple-50 rounded-lg p-4">
+                            <p class="text-gray-800 font-medium mb-2">✅ Solución paso a paso:</p>
+                            <div class="space-y-2 text-sm text-gray-700 font-mono">
+                                <p><strong>1.</strong> Paréntesis: (8 - 3) = 5</p>
+                                <p><strong>2.</strong> Quedan: 5 + 2 × 5 ÷ 2</p>
+                                <p><strong>3.</strong> Multiplicación: 2 × 5 = 10</p>
+                                <p><strong>4.</strong> División: 10 ÷ 2 = 5</p>
+                                <p><strong>5.</strong> Suma: 5 + 5 = <span class="font-bold text-math-purple">10</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problema 4 -->
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6 border border-red-200">
+                        <div class="flex items-center mb-4">
+                            <span class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-3">4</span>
+                            <h4 class="text-lg font-semibold text-gray-900">Decimales y fracciones</h4>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <p class="text-gray-800 font-medium mb-2">📝 Calcular:</p>
+                            <p class="text-gray-700 font-mono text-lg">
+                                2.5 × 4 + 1/2 ÷ 0.25
+                            </p>
+                        </div>
+                        
+                        <div class="bg-red-50 rounded-lg p-4">
+                            <p class="text-gray-800 font-medium mb-2">✅ Solución paso a paso:</p>
+                            <div class="space-y-2 text-sm text-gray-700 font-mono">
+                                <p><strong>1.</strong> 2.5 × 4 = 10</p>
+                                <p><strong>2.</strong> 1/2 = 0.5</p>
+                                <p><strong>3.</strong> 0.5 ÷ 0.25 = 2</p>
+                                <p><strong>4.</strong> 10 + 2 = <span class="font-bold text-primary">12</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ejercicios para Practicar -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">✏️ Tu Turno - Ejercicios para Resolver</h3>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Ejercicio 1 (Existente) -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-green transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">A</span>
+                            <h4 class="font-semibold text-gray-900">Suma básica</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">(-15) + 23 + (-8) = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer1')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer1" class="hidden mt-3 p-3 bg-math-green/10 border border-math-green/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-green">Respuesta: 0</p>
+                            <p class="text-xs text-gray-600 mt-1">-15 + 23 - 8 = 8 - 8 = 0</p>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 2 (Existente) -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-blue transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">B</span>
+                            <h4 class="font-semibold text-gray-900">Multiplicación</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">(-6) × (-4) × 2 = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer2')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer2" class="hidden mt-3 p-3 bg-math-blue/10 border border-math-blue/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-blue">Respuesta: 48</p>
+                            <p class="text-xs text-gray-600 mt-1">(-6) × (-4) = 24, luego 24 × 2 = 48</p>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 3 (Existente) -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-purple transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">C</span>
+                            <h4 class="font-semibold text-gray-900">División</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">72 ÷ (-8) = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer3')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer3" class="hidden mt-3 p-3 bg-math-purple/10 border border-math-purple/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-purple">Respuesta: -9</p>
+                            <p class="text-xs text-gray-600 mt-1">Positivo ÷ Negativo = Negativo</p>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 4 (Existente) -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-primary transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">D</span>
+                            <h4 class="font-semibold text-gray-900">Operaciones mixtas</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">4 × (7 - 2) + 8 ÷ 2 = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer4')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer4" class="hidden mt-3 p-3 bg-primary/10 border border-primary/30 rounded-lg">
+                            <p class="text-sm font-semibold text-primary">Respuesta: 24</p>
+                            <p class="text-xs text-gray-600 mt-1">4×5 + 4 = 20 + 4 = 24</p>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 5 (Existente) -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-green transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">E</span>
+                            <h4 class="font-semibold text-gray-900">Problema aplicado</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="text-sm text-center">Un termómetro marca -5°C. Si la temperatura sube 12°C y luego baja 3°C, ¿cuál es la temperatura final?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer5')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer5" class="hidden mt-3 p-3 bg-math-green/10 border border-math-green/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-green">Respuesta: 4°C</p>
+                            <p class="text-xs text-gray-600 mt-1">-5 + 12 - 3 = 7 - 3 = 4°C</p>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 6 (Existente) -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-blue transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">F</span>
+                            <h4 class="font-semibold text-gray-900">Decimales</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">3.5 × 2.4 - 1.8 = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer6')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer6" class="hidden mt-3 p-3 bg-math-blue/10 border border-math-blue/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-blue">Respuesta: 6.6</p>
+                            <p class="text-xs text-gray-600 mt-1">3.5 × 2.4 = 8.4, luego 8.4 - 1.8 = 6.6</p>
+                        </div>
+                    </div>
+
+                    <!-- Nuevos Ejercicios -->
+                    <!-- En ℕ (Naturales) -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-green transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">G</span>
+                            <h4 class="font-semibold text-gray-900">En ℕ: Suma</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">15 + 28 = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answerN1')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">Ver respuesta</button>
+                        <div id="answerN1" class="hidden mt-3 p-3 bg-math-green/10 border border-math-green/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-green">Respuesta: 43</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-green transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">H</span>
+                            <h4 class="font-semibold text-gray-900">En ℕ: Multiplicación</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">12 × 7 = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answerN2')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">Ver respuesta</button>
+                        <div id="answerN2" class="hidden mt-3 p-3 bg-math-green/10 border border-math-green/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-green">Respuesta: 84</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-green transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">I</span>
+                            <h4 class="font-semibold text-gray-900">En ℕ: Resta</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="text-sm text-center">¿Está 25 - 30 en ℕ? ¿Por qué?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answerN3')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">Ver respuesta</button>
+                        <div id="answerN3" class="hidden mt-3 p-3 bg-math-green/10 border border-math-green/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-green">Respuesta: No</p>
+                            <p class="text-xs text-gray-600 mt-1">25 - 30 = -5, que no es un número natural.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-green transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">J</span>
+                            <h4 class="font-semibold text-gray-900">En ℕ: División</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="text-sm text-center">¿Está 18 ÷ 6 en ℕ? ¿Y 18 ÷ 5?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answerN4')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">Ver respuesta</button>
+                        <div id="answerN4" class="hidden mt-3 p-3 bg-math-green/10 border border-math-green/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-green">Respuesta: 18 ÷ 6 = 3 (Sí). 18 ÷ 5 = 3.6 (No).</p>
+                        </div>
+                    </div>
+
+                    <!-- En ℤ (Enteros) -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-blue transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">K</span>
+                            <h4 class="font-semibold text-gray-900">En ℤ: Suma</h4>
+                        </div>
+                        <div class="bg-gray
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Opción 1: Dibujo Matemático -->
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200 card-hover">
+                        <h4 class="text-xl font-semibold text-math-blue mb-3">OPCIÓN 1: DIBUJO MATEMÁTICO 🖍️</h4>
+                        <p class="text-gray-700 mb-4">Crea un dibujo que represente tu carrera usando solo <strong class="text-math-blue">formas geométricas y números</strong>:</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2 mb-4 text-sm">
+                            <li><strong>Círculos:</strong> ciclos, procesos, conceptos completos.</li>
+                            <li><strong>Cuadrados/Rectángulos:</strong> estructuras, bases sólidas, estabilidad.</li>
+                            <li><strong>Triángulos:</strong> crecimiento, jerarquías, puntos de decisión.</li>
+                            <li><strong>Líneas:</strong> conexiones, procesos, tiempo.</li>
+                            <li><strong>Números:</strong> importantes en tu campo (fechas, estadísticas, medidas).</li>
+                        </ul>
+                        <p class="text-xs text-gray-500"><em>Ej: Medicina (corazón de círculos), Ingeniería (engranajes), Arte (paleta circular).</em></p>
+                    </div>
+
+                    <!-- Opción 2: Infografía Visual -->
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200 card-hover">
+                        <h4 class="text-xl font-semibold text-math-purple mb-3">OPCIÓN 2: INFOGRAFÍA VISUAL 📊</h4>
+                        <p class="text-gray-700 mb-4">Diseña una infografía simple sobre tu carrera usando <strong class="text-math-purple">elementos matemáticos</strong>:</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2 mb-4 text-sm">
+                            <li><strong>Gráfico circular:</strong> % de tiempo en actividades.</li>
+                            <li><strong>Gráfico de barras:</strong> Ranking de habilidades.</li>
+                            <li><strong>Línea de tiempo:</strong> Eventos importantes.</li>
+                            <li><strong>Estadísticas creativas:</strong> Datos curiosos.</li>
+                        </ul>
+                         <p class="text-xs text-gray-500"><em>Ej: Porcentaje de tareas, habilidades más demandadas, hitos históricos.</em></p>
+                    </div>
+
+                    <!-- Opción 3: Poema Matemático -->
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200 card-hover">
+                        <h4 class="text-xl font-semibold text-math-green mb-3">OPCIÓN 3: POEMA MATEMÁTICO ✍️</h4>
+                        <p class="text-gray-700 mb-4">Escribe un poema sobre por qué elegiste tu carrera, incorporando <strong class="text-math-green">operaciones matemáticas como metáforas</strong> (4 estrofas):</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4 text-sm">
+                            <li><strong>SUMA:</strong> Elementos que te llevaron a elegirla.</li>
+                            <li><strong>RESTA:</strong> Miedos o dudas superadas.</li>
+                            <li><strong>MULTIPLICACIÓN:</strong> Cómo multiplicará tus oportunidades.</li>
+                            <li><strong>DIVISIÓN:</strong> Cómo compartirás tu conocimiento.</li>
+                        </ul>
+                        <p class="text-xs text-gray-500"><em>Ej. Psicología: "SUMA de curiosidad + empatía..."</em></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-800 text-white rounded-2xl p-8 shadow-lg">
+                 <h3 class="text-2xl font-bold mb-6 text-center">🗣️ REFLEXIÓN GRUPAL (últimos 5 minutos)</h3>
+                 <p class="text-gray-300 text-center mb-6">Compartan voluntariamente:</p>
+                 <ol class="list-decimal list-inside text-gray-300 space-y-3 max-w-2xl mx-auto">
+                     <li>¿Qué números o formas consideran más importantes en su carrera?</li>
+                     <li>¿Cómo se relacionan las matemáticas con lo que quieren estudiar?</li>
+                     <li>¿Alguna operación matemática describe mejor su motivación? (¿sumar conocimiento, multiplicar impacto, etc.?)</li>
+                 </ol>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección: Números Reales -->
+    <section id="numeros-reales" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-block bg-gradient-to-r from-math-blue to-math-purple text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                    TEMA 1
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Los Números Reales (ℝ)
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprendamos la estructura fundamental de los números que utilizamos en matemáticas
+                </p>
+            </div>
+
+            <!-- Definición Principal -->
+            <div class="mb-16">
+                <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-math-blue text-white rounded-full flex items-center justify-center mr-3 text-sm">ℝ</span>
+                        ¿Qué son los Números Reales?
+                    </h3>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                        Los números reales (ℝ) son el conjunto de todos los números que pueden ser representados en la recta numérica real. 
+                        Incluyen tanto números racionales como irracionales, y forman la base de la mayoría de cálculos matemáticos.
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-math-blue p-4 rounded-r-lg">
+                        <p class="text-math-blue font-semibold">
+                            💡 Dato importante: Los números reales se extienden infinitamente en ambas direcciones de la recta numérica.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clasificación de Números -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Números Racionales -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-math-green text-white rounded-xl flex items-center justify-center mr-4">
+                            <span class="font-bold">ℚ</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Números Racionales</h3>
+                            <p class="text-gray-600">Se pueden expresar como fracción</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Enteros (ℤ)</h4>
+                            <p class="text-gray-700 text-sm mb-2">..., -3, -2, -1, 0, 1, 2, 3, ...</p>
+                            <p class="text-xs text-gray-600">Incluyen positivos, negativos y cero</p>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Naturales (ℕ)</h4>
+                            <p class="text-gray-700 text-sm mb-2">1, 2, 3, 4, 5, ...</p>
+                            <p class="text-xs text-gray-600">Números para contar</p>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Fracciones</h4>
+                            <p class="text-gray-700 text-sm mb-2">1/2, 3/4, -2/3, 0.5, 0.75</p>
+                            <p class="text-xs text-gray-600">a/b donde b ≠ 0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Números Irracionales -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-math-purple text-white rounded-xl flex items-center justify-center mr-4">
+                            <span class="font-bold">𝕀</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Números Irracionales</h3>
+                            <p class="text-gray-600">No se pueden expresar como fracción</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-purple-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Raíces</h4>
+                            <p class="text-gray-700 text-sm mb-2">√2 ≈ 1.414..., √3 ≈ 1.732...</p>
+                            <p class="text-xs text-gray-600">Decimales infinitos no periódicos</p>
+                        </div>
+                        
+                        <div class="bg-purple-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Constantes especiales</h4>
+                            <p class="text-gray-700 text-sm mb-2">π ≈ 3.14159..., e ≈ 2.71828...</p>
+                            <p class="text-xs text-gray-600">Importantes en geometría y cálculo</p>
+                        </div>
+                        
+                        <div class="bg-purple-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Logarítmicos</h4>
+                            <p class="text-gray-700 text-sm mb-2">log₂(3), ln(2), log₁₀(7)</p>
+                            <p class="text-xs text-gray-600">Relacionados con exponenciales</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recta Numérica -->
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 text-white mb-16">
+                <h3 class="text-2xl font-bold mb-6 text-center">La Recta Numérica Real</h3>
+                <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
+                    <div class="relative">
+                        <!-- Línea principal -->
+                        <div class="w-full h-1 bg-white rounded-full mb-4"></div>
+                        
+                        <!-- Marcadores -->
+                        <div class="flex justify-between items-center text-sm">
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-primary rounded-full mx-auto mb-1"></div>
+                                <span>-∞</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-math-green rounded-full mx-auto mb-1"></div>
+                                <span>-2</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-math-blue rounded-full mx-auto mb-1"></div>
+                                <span>0</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-math-purple rounded-full mx-auto mb-1"></div>
+                                <span>√2</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-math-green rounded-full mx-auto mb-1"></div>
+                                <span>π</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-2 h-2 bg-primary rounded-full mx-auto mb-1"></div>
+                                <span>+∞</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center text-gray-300 mt-4">
+                    Todos los números reales pueden ubicarse en un punto específico de esta recta
+                </p>
+            </div>
+
+            <!-- Propiedades importantes -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-blue-50 rounded-xl p-6 border-l-4 border-math-blue">
+                    <h4 class="font-bold text-gray-900 mb-3">🔄 Densidad</h4>
+                    <p class="text-gray-700 text-sm">
+                        Entre cualquier par de números reales siempre existe otro número real.
+                    </p>
+                </div>
+                
+                <div class="bg-green-50 rounded-xl p-6 border-l-4 border-math-green">
+                    <h4 class="font-bold text-gray-900 mb-3">📏 Completitud</h4>
+                    <p class="text-gray-700 text-sm">
+                        No hay "huecos" en la recta real; cada punto corresponde a un número real.
+                    </p>
+                </div>
+                
+                <div class="bg-purple-50 rounded-xl p-6 border-l-4 border-math-purple">
+                    <h4 class="font-bold text-gray-900 mb-3">🔢 Orden</h4>
+                    <p class="text-gray-700 text-sm">
+                        Los números reales están totalmente ordenados: dados dos números, uno es mayor que el otro.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección: Operaciones Básicas -->
+    <section id="operaciones" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-block bg-gradient-to-r from-math-green to-math-blue text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                    TEMA 2
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Operaciones Básicas
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Las cuatro operaciones fundamentales con números reales y sus propiedades
+                </p>
+            </div>
+
+            <!-- Suma -->
+            <div class="mb-16">
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-math-green to-green-400 text-white rounded-2xl flex items-center justify-center mr-6">
+                            <span class="text-2xl font-bold">+</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Suma (Adición)</h3>
+                            <p class="text-gray-600">Combinar dos o más números</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Propiedades de la Suma</h4>
+                            <div class="space-y-3">
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Conmutativa</h5>
+                                    <p class="text-sm text-gray-700">a + b = b + a</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 3 + 5 = 5 + 3 = 8</p>
+                                </div>
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Asociativa</h5>
+                                    <p class="text-sm text-gray-700">(a + b) + c = a + (b + c)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: (2 + 3) + 4 = 2 + (3 + 4) = 9</p>
+                                </div>
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Elemento neutro</h5>
+                                    <p class="text-sm text-gray-700">a + 0 = a</p>
+                                    <p class="text-xs text-gray-600">El cero no cambia el resultado</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Ejemplos Prácticos</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Números positivos:</p>
+                                    <p class="text-sm text-gray-700">15 + 7 = 22</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Con números negativos:</p>
+                                    <p class="text-sm text-gray-700">-8 + 12 = 4</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Dos números negativos:</p>
+                                    <p class="text-sm text-gray-700">-5 + (-3) = -8</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Con decimales:</p>
+                                    <p class="text-sm text-gray-700">2.5 + 1.75 = 4.25</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resta -->
+            <div class="mb-16">
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-400 text-white rounded-2xl flex items-center justify-center mr-6">
+                            <span class="text-2xl font-bold">−</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Resta (Sustracción)</h3>
+                            <p class="text-gray-600">Encontrar la diferencia entre números</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Conceptos Importantes</h4>
+                            <div class="space-y-3">
+                                <div class="bg-red-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Definición</h5>
+                                    <p class="text-sm text-gray-700">a - b = a + (-b)</p>
+                                    <p class="text-xs text-gray-600">Restar es sumar el opuesto</p>
+                                </div>
+                                <div class="bg-red-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">No es conmutativa</h5>
+                                    <p class="text-sm text-gray-700">a - b ≠ b - a</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 8 - 3 = 5, pero 3 - 8 = -5</p>
+                                </div>
+                                <div class="bg-red-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Elemento neutro</h5>
+                                    <p class="text-sm text-gray-700">a - 0 = a</p>
+                                    <p class="text-xs text-gray-600">Restar cero no cambia el número</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Ejemplos Prácticos</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Números positivos:</p>
+                                    <p class="text-sm text-gray-700">20 - 7 = 13</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Restar un negativo:</p>
+                                    <p class="text-sm text-gray-700">5 - (-3) = 5 + 3 = 8</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Resultado negativo:</p>
+                                    <p class="text-sm text-gray-700">4 - 9 = -5</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Con decimales:</p>
+                                    <p class="text-sm text-gray-700">7.8 - 2.3 = 5.5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multiplicación -->
+            <div class="mb-16">
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-math-blue to-blue-400 text-white rounded-2xl flex items-center justify-center mr-6">
+                            <span class="text-2xl font-bold">×</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Multiplicación</h3>
+                            <p class="text-gray-600">Suma repetida o producto de factores</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Propiedades</h4>
+                            <div class="space-y-3">
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Conmutativa</h5>
+                                    <p class="text-sm text-gray-700">a × b = b × a</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 4 × 6 = 6 × 4 = 24</p>
+                                </div>
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Asociativa</h5>
+                                    <p class="text-sm text-gray-700">(a × b) × c = a × (b × c)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: (2 × 3) × 4 = 2 × (3 × 4) = 24</p>
+                                </div>
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Elemento neutro</h5>
+                                    <p class="text-sm text-gray-700">a × 1 = a</p>
+                                    <p class="text-xs text-gray-600">Multiplicar por 1 no cambia el número</p>
+                                </div>
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Distributiva</h5>
+                                    <p class="text-sm text-gray-700">a × (b + c) = a × b + a × c</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 3 × (2 + 4) = 3 × 2 + 3 × 4 = 18</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Reglas de Signos</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Positivo × Positivo:</p>
+                                    <p class="text-sm text-gray-700">(+) × (+) = (+)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 7 × 3 = 21</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Negativo × Negativo:</p>
+                                    <p class="text-sm text-gray-700">(-) × (-) = (+)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: (-4) × (-5) = 20</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Positivo × Negativo:</p>
+                                    <p class="text-sm text-gray-700">(+) × (-) = (-)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 6 × (-2) = -12</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Cualquier número × 0:</p>
+                                    <p class="text-sm text-gray-700">a × 0 = 0</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 100 × 0 = 0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- División -->
+            <div class="mb-16">
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-math-purple to-purple-400 text-white rounded-2xl flex items-center justify-center mr-6">
+                            <span class="text-2xl font-bold">÷</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">División</h3>
+                            <p class="text-gray-600">Repartir en partes iguales</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Conceptos Importantes</h4>
+                            <div class="space-y-3">
+                                <div class="bg-purple-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Definición</h5>
+                                    <p class="text-sm text-gray-700">a ÷ b = a × (1/b)</p>
+                                    <p class="text-xs text-gray-600">Dividir es multiplicar por el recíproco</p>
+                                </div>
+                                <div class="bg-purple-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">No es conmutativa</h5>
+                                    <p class="text-sm text-gray-700">a ÷ b ≠ b ÷ a</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 12 ÷ 3 = 4, pero 3 ÷ 12 = 0.25</p>
+                                </div>
+                                <div class="bg-purple-50 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900 mb-1">Elemento neutro</h5>
+                                    <p class="text-sm text-gray-700">a ÷ 1 = a</p>
+                                    <p class="text-xs text-gray-600">Dividir por 1 no cambia el número</p>
+                                </div>
+                                <div class="bg-red-100 border border-red-300 rounded-lg p-4">
+                                    <h5 class="font-medium text-red-800 mb-1">⚠️ División por cero</h5>
+                                    <p class="text-sm text-red-700">a ÷ 0 = indefinido</p>
+                                    <p class="text-xs text-red-600">¡Nunca se puede dividir por cero!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-4">Reglas de Signos</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Positivo ÷ Positivo:</p>
+                                    <p class="text-sm text-gray-700">(+) ÷ (+) = (+)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 15 ÷ 3 = 5</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Negativo ÷ Negativo:</p>
+                                    <p class="text-sm text-gray-700">(-) ÷ (-) = (+)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: (-20) ÷ (-4) = 5</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Positivo ÷ Negativo:</p>
+                                    <p class="text-sm text-gray-700">(+) ÷ (-) = (-)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 18 ÷ (-3) = -6</p>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="font-medium text-gray-900">Cero ÷ cualquier número:</p>
+                                    <p class="text-sm text-gray-700">0 ÷ a = 0 (si a ≠ 0)</p>
+                                    <p class="text-xs text-gray-600">Ejemplo: 0 ÷ 7 = 0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orden de Operaciones -->
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
+                <h3 class="text-2xl font-bold mb-6 text-center">Orden de las Operaciones (PEMDAS)</h3>
+                <div class="grid md:grid-cols-5 gap-4 mb-6">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-2">( )</div>
+                        <h4 class="font-semibold mb-1">Paréntesis</h4>
+                        <p class="text-xs text-gray-300">Primero</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-2">^</div>
+                        <h4 class="font-semibold mb-1">Exponentes</h4>
+                        <p class="text-xs text-gray-300">Segundo</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-2">× ÷</div>
+                        <h4 class="font-semibold mb-1">Multiplicación</h4>
+                        <p class="text-xs text-gray-300">División</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-2">+ −</div>
+                        <h4 class="font-semibold mb-1">Suma</h4>
+                        <p class="text-xs text-gray-300">Resta</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-2">→</div>
+                        <h4 class="font-semibold mb-1">Izquierda</h4>
+                        <p class="text-xs text-gray-300">a Derecha</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
+                    <h4 class="font-semibold mb-3">Ejemplo paso a paso:</h4>
+                    <div class="space-y-2 font-mono">
+                        <p>2 + 3 × (4 - 1)²</p>
+                        <p>= 2 + 3 × (3)²</p>
+                        <p>= 2 + 3 × 9</p>
+                        <p>= 2 + 27</p>
+                        <p class="text-primary font-bold">= 29</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección: Ejercicios Prácticos -->
+    <section id="ejercicios" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-block bg-gradient-to-r from-math-purple to-primary text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                    PRÁCTICA
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Ejercicios Prácticos
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Pon a prueba tus conocimientos con estos problemas paso a paso
+                </p>
+            </div>
+
+            <!-- Problemas Resueltos -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">📚 Problemas Resueltos</h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Problema 1 -->
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border border-green-200">
+                        <div class="flex items-center mb-4">
+                            <span class="w-10 h-10 bg-math-green text-white rounded-full flex items-center justify-center font-bold mr-3">1</span>
+                            <h4 class="text-lg font-semibold text-gray-900">Problema de la vida real</h4>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <p class="text-gray-800 font-medium mb-2">📝 Enunciado:</p>
+                            <p class="text-gray-700">
+                                María tiene $50. Compra 3 libros que cuestan $12 cada uno y luego su hermana le da $15. 
+                                ¿Cuánto dinero tiene María al final?
+                            </p>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <p class="text-gray-800 font-medium mb-2">✅ Solución paso a paso:</p>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <p><strong>1.</strong> Dinero inicial: $50</p>
+                                <p><strong>2.</strong> Costo de libros: 3 × $12 = $36</p>
+                                <p><strong>3.</strong> Dinero después de comprar: $50 - $36 = $14</p>
+                                <p><strong>4.</strong> Dinero que recibe: $15</p>
+                                <p><strong>5.</strong> Dinero final: $14 + $15 = <span class="font-bold text-math-green">$29</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problema 2 -->
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200">
+                        <div class="flex items-center mb-4">
+                            <span class="w-10 h-10 bg-math-blue text-white rounded-full flex items-center justify-center font-bold mr-3">2</span>
+                            <h4 class="text-lg font-semibold text-gray-900">Operaciones con signos</h4>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <p class="text-gray-800 font-medium mb-2">📝 Calcular:</p>
+                            <p class="text-gray-700 font-mono text-lg">
+                                (-8) × 3 + (-12) ÷ 4 - (-5)
+                            </p>
+                        </div>
+                        
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <p class="text-gray-800 font-medium mb-2">✅ Solución paso a paso:</p>
+                            <div class="space-y-2 text-sm text-gray-700 font-mono">
+                                <p><strong>1.</strong> (-8) × 3 = -24</p>
+                                <p><strong>2.</strong> (-12) ÷ 4 = -3</p>
+                                <p><strong>3.</strong> -(-5) = +5</p>
+                                <p><strong>4.</strong> -24 + (-3) + 5</p>
+                                <p><strong>5.</strong> -24 - 3 + 5 = <span class="font-bold text-math-blue">-22</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problema 3 -->
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border border-purple-200">
+                        <div class="flex items-center mb-4">
+                            <span class="w-10 h-10 bg-math-purple text-white rounded-full flex items-center justify-center font-bold mr-3">3</span>
+                            <h4 class="text-lg font-semibold text-gray-900">Orden de operaciones</h4>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <p class="text-gray-800 font-medium mb-2">📝 Calcular:</p>
+                            <p class="text-gray-700 font-mono text-lg">
+                                5 + 2 × (8 - 3) ÷ 2
+                            </p>
+                        </div>
+                        
+                        <div class="bg-purple-50 rounded-lg p-4">
+                            <p class="text-gray-800 font-medium mb-2">✅ Solución paso a paso:</p>
+                            <div class="space-y-2 text-sm text-gray-700 font-mono">
+                                <p><strong>1.</strong> Paréntesis: (8 - 3) = 5</p>
+                                <p><strong>2.</strong> Quedan: 5 + 2 × 5 ÷ 2</p>
+                                <p><strong>3.</strong> Multiplicación: 2 × 5 = 10</p>
+                                <p><strong>4.</strong> División: 10 ÷ 2 = 5</p>
+                                <p><strong>5.</strong> Suma: 5 + 5 = <span class="font-bold text-math-purple">10</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problema 4 -->
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6 border border-red-200">
+                        <div class="flex items-center mb-4">
+                            <span class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-3">4</span>
+                            <h4 class="text-lg font-semibold text-gray-900">Decimales y fracciones</h4>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <p class="text-gray-800 font-medium mb-2">📝 Calcular:</p>
+                            <p class="text-gray-700 font-mono text-lg">
+                                2.5 × 4 + 1/2 ÷ 0.25
+                            </p>
+                        </div>
+                        
+                        <div class="bg-red-50 rounded-lg p-4">
+                            <p class="text-gray-800 font-medium mb-2">✅ Solución paso a paso:</p>
+                            <div class="space-y-2 text-sm text-gray-700 font-mono">
+                                <p><strong>1.</strong> 2.5 × 4 = 10</p>
+                                <p><strong>2.</strong> 1/2 = 0.5</p>
+                                <p><strong>3.</strong> 0.5 ÷ 0.25 = 2</p>
+                                <p><strong>4.</strong> 10 + 2 = <span class="font-bold text-primary">12</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ejercicios para Practicar -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">✏️ Tu Turno - Ejercicios para Resolver</h3>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Ejercicio 1 -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-green transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">A</span>
+                            <h4 class="font-semibold text-gray-900">Suma básica</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">(-15) + 23 + (-8) = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer1')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer1" class="hidden mt-3 p-3 bg-math-green/10 border border-math-green/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-green">Respuesta: 0</p>
+                            <p class="text-xs text-gray-600 mt-1">-15 + 23 - 8 = 8 - 8 = 0</p>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 2 -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-blue transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">B</span>
+                            <h4 class="font-semibold text-gray-900">Multiplicación</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">(-6) × (-4) × 2 = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer2')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer2" class="hidden mt-3 p-3 bg-math-blue/10 border border-math-blue/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-blue">Respuesta: 48</p>
+                            <p class="text-xs text-gray-600 mt-1">(-6) × (-4) = 24, luego 24 × 2 = 48</p>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 3 -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-purple transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">C</span>
+                            <h4 class="font-semibold text-gray-900">División</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">72 ÷ (-8) = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer3')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer3" class="hidden mt-3 p-3 bg-math-purple/10 border border-math-purple/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-purple">Respuesta: -9</p>
+                            <p class="text-xs text-gray-600 mt-1">Positivo ÷ Negativo = Negativo</p>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 4 -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-primary transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">D</span>
+                            <h4 class="font-semibold text-gray-900">Operaciones mixtas</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">4 × (7 - 2) + 8 ÷ 2 = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer4')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer4" class="hidden mt-3 p-3 bg-primary/10 border border-primary/30 rounded-lg">
+                            <p class="text-sm font-semibold text-primary">Respuesta: 24</p>
+                            <p class="text-xs text-gray-600 mt-1">4×5 + 4 = 20 + 4 = 24</p>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 5 -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-green transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">E</span>
+                            <h4 class="font-semibold text-gray-900">Problema aplicado</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="text-sm text-center">Un termómetro marca -5°C. Si la temperatura sube 12°C y luego baja 3°C, ¿cuál es la temperatura final?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer5')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer5" class="hidden mt-3 p-3 bg-math-green/10 border border-math-green/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-green">Respuesta: 4°C</p>
+                            <p class="text-xs text-gray-600 mt-1">-5 + 12 - 3 = 7 - 3 = 4°C</p>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 6 -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-math-blue transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-bold mr-3 text-sm">F</span>
+                            <h4 class="font-semibold text-gray-900">Decimales</h4>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <p class="font-mono text-lg text-center">3.5 × 2.4 - 1.8 = ?</p>
+                        </div>
+                        <button onclick="toggleAnswer('answer6')" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                            Ver respuesta
+                        </button>
+                        <div id="answer6" class="hidden mt-3 p-3 bg-math-blue/10 border border-math-blue/30 rounded-lg">
+                            <p class="text-sm font-semibold text-math-blue">Respuesta: 6.6</p>
+                            <p class="text-xs text-gray-600 mt-1">3.5 × 2.4 = 8.4, luego 8.4 - 1.8 = 6.6</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculadora interactiva -->
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
+                <h3 class="text-2xl font-bold mb-6 text-center">🧮 Calculadora de Práctica</h3>
+                <div class="max-w-md mx-auto">
+                    <div class="bg-black rounded-lg p-4 mb-4">
+                        <input type="text" id="calculator-display" class="w-full bg-transparent text-white text-right text-2xl font-mono border-none outline-none" readonly value="0">
+                    </div>
+                    
+                    <div class="grid grid-cols-4 gap-3">
+                        <button onclick="clearCalculator()" class="col-span-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">C</button>
+                        <button onclick="deleteLast()" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">⌫</button>
+                        <button onclick="appendToDisplay('/')" class="bg-math-purple hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">÷</button>
+                        
+                        <button onclick="appendToDisplay('7')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">7</button>
+                        <button onclick="appendToDisplay('8')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">8</button>
+                        <button onclick="appendToDisplay('9')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">9</button>
+                        <button onclick="appendToDisplay('*')" class="bg-math-blue hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">×</button>
+                        
+                        <button onclick="appendToDisplay('4')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">4</button>
+                        <button onclick="appendToDisplay('5')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">5</button>
+                        <button onclick="appendToDisplay('6')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">6</button>
+                        <button onclick="appendToDisplay('-')" class="bg-primary hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">−</button>
+                        
+                        <button onclick="appendToDisplay('1')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">1</button>
+                        <button onclick="appendToDisplay('2')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">2</button>
+                        <button onclick="appendToDisplay('3')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">3</button>
+                        <button onclick="appendToDisplay('+')" class="bg-math-green hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">+</button>
+                        
+                        <button onclick="appendToDisplay('0')" class="col-span-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">0</button>
+                        <button onclick="appendToDisplay('.')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">.</button>
+                        <button onclick="calculate()" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">=</button>
+                    </div>
+                </div>
+                
+                <p class="text-center text-gray-300 mt-6 text-sm">
+                    Usa esta calculadora para verificar tus respuestas y practicar operaciones
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-math-blue via-math-purple to-math-green rounded-xl flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xl">∑</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Matemáticas Básicas</h3>
+                            <p class="text-gray-400">Operaciones con Números Reales</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Clase diseñada para estudiantes de 18-21 años. Material educativo sobre operaciones fundamentales 
+                        con números reales, incluyendo conceptos teóricos y ejercicios prácticos.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="index.html" class="bg-primary hover:bg-secondary px-6 py-2 rounded-full transition-colors duration-300">
+                            Ver Portfolio
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contenido</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#numeros-reales" class="hover:text-white transition-colors">Números Reales</a></li>
+                        <li><a href="#operaciones" class="hover:text-white transition-colors">Operaciones Básicas</a></li>
+                        <li><a href="#ejercicios" class="hover:text-white transition-colors">Ejercicios</a></li>
+                        <li><a href="operacionesbasicas.txt" class="hover:text-white transition-colors" target="_blank">Material Original</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Recursos</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Calculadora</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Ejercicios Adicionales</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Guía de Estudio</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">
+                        © 2024 Carlos Angulo - Material Educativo de Matemáticas
+                    </p>
+                    <div class="flex items-center space-x-4 text-gray-400">
+                        <span>📧 cangulo009@outlook.es</span>
+                        <span>📍 Quito, Ecuador</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Variables globales
+        let currentDisplay = "0";
+        let shouldResetDisplay = false;
+
+        // Función para alternar respuestas de ejercicios
+        function toggleAnswer(answerId) {
+            const answerElement = document.getElementById(answerId);
+            if (answerElement.classList.contains('hidden')) {
+                answerElement.classList.remove('hidden');
+                answerElement.style.animation = 'fadeIn 0.3s ease-in';
+            } else {
+                answerElement.classList.add('hidden');
+            }
+        }
+
+        // Funciones de la calculadora
+        function appendToDisplay(value) {
+            const display = document.getElementById('calculator-display');
+            
+            if (shouldResetDisplay) {
+                currentDisplay = "0";
+                shouldResetDisplay = false;
+            }
+            
+            if (currentDisplay === "0" && value !== ".") {
+                currentDisplay = value;
+            } else {
+                currentDisplay += value;
+            }
+            
+            display.value = currentDisplay;
+        }
+
+        function clearCalculator() {
+            currentDisplay = "0";
+            document.getElementById('calculator-display').value = currentDisplay;
+            shouldResetDisplay = false;
+        }
+
+        function deleteLast() {
+            if (currentDisplay.length > 1) {
+                currentDisplay = currentDisplay.slice(0, -1);
+            } else {
+                currentDisplay = "0";
+            }
+            document.getElementById('calculator-display').value = currentDisplay;
+        }
+
+        function calculate() {
+            try {
+                // Reemplazar operadores para JavaScript
+                let expression = currentDisplay
+                    .replace(/×/g, '*')
+                    .replace(/÷/g, '/')
+                    .replace(/−/g, '-');
+                
+                const result = eval(expression);
+                
+                if (isFinite(result)) {
+                    currentDisplay = result.toString();
+                    document.getElementById('calculator-display').value = currentDisplay;
+                    shouldResetDisplay = true;
+                } else {
+                    throw new Error('División por cero o resultado infinito');
+                }
+            } catch (error) {
+                document.getElementById('calculator-display').value = "Error";
+                currentDisplay = "0";
+                shouldResetDisplay = true;
+            }
+        }
+
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Menú móvil
+        const menuBtn = document.getElementById('menu-btn');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', function() {
+                // Crear menú móvil dinámicamente si no existe
+                let mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu) {
+                    mobileMenu = document.createElement('div');
+                    mobileMenu.id = 'mobile-menu';
+                    mobileMenu.className = 'md:hidden bg-gray-900/95 backdrop-blur-md fixed top-20 left-0 right-0 z-40 px-4 py-6 shadow-2xl transform -translate-y-full transition-transform duration-300';
+                    mobileMenu.innerHTML = `
+                        <div class="space-y-4">
+                            <a href="#inicio" class="block text-gray-300 hover:text-primary transition-colors py-2 font-medium">Inicio</a>
+                            <a href="#numeros-reales" class="block text-gray-300 hover:text-primary transition-colors py-2 font-medium">Números Reales</a>
+                            <a href="#operaciones" class="block text-gray-300 hover:text-primary transition-colors py-2 font-medium">Operaciones</a>
+                            <a href="#ejercicios" class="block bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full font-semibold text-center">Ejercicios</a>
+                        </div>
+                    `;
+                    document.querySelector('nav').appendChild(mobileMenu);
+                }
+                
+                // Toggle menú
+                if (mobileMenu.style.transform === 'translateY(0px)') {
+                    mobileMenu.style.transform = 'translateY(-100%)';
+                } else {
+                    mobileMenu.style.transform = 'translateY(0px)';
+                }
+            });
+        }
+
+        // Cerrar menú móvil al hacer clic en enlaces
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu) {
+                    mobileMenu.style.transform = 'translateY(-100%)';
+                }
+            }
+        });
+
+        // Animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 1s ease-in forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos con clase fade-in
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Efectos de hover para las tarjetas
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '';
+            });
+        });        // Validación de entrada para la calculadora
+        document.addEventListener('keydown', function(e) {
+            const display = document.getElementById('calculator-display');
+            if (display === document.activeElement) {
+                // Permitir solo ciertos números y operadores
+                const allowedKeys = ['0','1','2','3','4','5','6','7','8','9','+','-','*','/','.',
+                                   'Enter','Backspace','Delete','Escape','Tab'];
+                
+                if (allowedKeys.includes(e.key)) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        calculate();
+                    } else if (e.key === 'Escape') {
+                        e.preventDefault();
+                        clearCalculator();
+                    } else if (e.key === 'Backspace') {
+                        e.preventDefault();
+                        deleteLast();
+                    }
+                } else {
+                    e.preventDefault();
+                }
+            }
+        });
+
+        // Preloader simple
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+        });
+
+        // Mostrar progreso de scroll
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            // Crear barra de progreso si no existe
+            let progressBar = document.getElementById('scroll-progress');
+            if (!progressBar) {
+                progressBar = document.createElement('div');
+                progressBar.id = 'scroll-progress';
+                progressBar.className = 'fixed top-0 left-0 h-1 bg-gradient-to-r from-primary to-secondary z-50 transition-all duration-300';
+                document.body.appendChild(progressBar);
+            }
+            
+            progressBar.style.width = scrolled + '%';
+        });
+
+        console.log('🧮 Presentación de Matemáticas cargada correctamente!');
+        console.log('📚 Funciones disponibles: calculadora, ejercicios interactivos, navegación suave');
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+# CONJUNTOS NUMÉRICOS Y SUS OPERACIONES
+
+## A) NÚMEROS NATURALES (ℕ) = {1, 2, 3, 4, 5, ...}
+**¿Para qué sirven?** Contar objetos, ordenar elementos
+
+### Operaciones en ℕ:
+- **Suma**: Siempre da resultado en ℕ
+  - Ejemplos: 3 + 5 = 8, 12 + 7 = 19
+- **Multiplicación**: Siempre da resultado en ℕ
+  - Ejemplos: 4 × 6 = 24, 3 × 9 = 27
+- **Resta**: NO siempre da resultado en ℕ
+  - 8 - 3 = 5 ✓ (está en ℕ)
+  - 3 - 8 = -5 ✗ (NO está en ℕ)
+- **División**: NO siempre da resultado en ℕ
+  - 15 ÷ 3 = 5 ✓ (está en ℕ)
+  - 15 ÷ 4 = 3.75 ✗ (NO está en ℕ)
+
+## B) NÚMEROS ENTEROS (ℤ) = {..., -3, -2, -1, 0, 1, 2, 3, ...}
+**¿Para qué sirven?** Temperaturas, deudas, pisos de edificios
+
+### Operaciones en ℤ:
+- **Suma**: Siempre da resultado en ℤ
+  - Ejemplos: (-5) + 3 = -2, 7 + (-10) = -3
+- **Resta**: Siempre da resultado en ℤ
+  - Ejemplos: 4 - 9 = -5, (-6) - (-2) = -4
+- **Multiplicación**: Siempre da resultado en ℤ
+  - Ejemplos: (-3) × 4 = -12, (-5) × (-6) = 30
+- **División**: NO siempre da resultado en ℤ
+  - 12 ÷ 4 = 3 ✓ (está en ℤ)
+  - 13 ÷ 4 = 3.25 ✗ (NO está en ℤ)
+
+## C) NÚMEROS RACIONALES (ℚ) = {a/b | a,b ∈ ℤ, b ≠ 0}
+**¿Para qué sirven?** Medidas, porcentajes, proporciones
+
+### Incluyen:
+- Fracciones: 1/2, -3/4, 5/8
+- Decimales exactos: 0.25, -1.75, 3.5
+- Decimales periódicos: 0.333..., 1.666..., 0.142857142857...
+
+### Operaciones en ℚ:
+- **Suma**: Siempre da resultado en ℚ
+  - Ejemplos: 1/2 + 1/3 = 5/6, 2.5 + 1.25 = 3.75
+- **Resta**: Siempre da resultado en ℚ
+  - Ejemplos: 3/4 - 1/2 = 1/4, 5.6 - 2.8 = 2.8
+- **Multiplicación**: Siempre da resultado en ℚ
+  - Ejemplos: (2/3) × (3/4) = 1/2, 1.5 × 2.4 = 3.6
+- **División**: Siempre da resultado en ℚ (excepto ÷ 0)
+  - Ejemplos: (3/4) ÷ (1/2) = 3/2, 7.5 ÷ 2.5 = 3
+
+## D) NÚMEROS IRRACIONALES (I)
+**¿Qué son?** Decimales infinitos NO periódicos
+
+### Ejemplos comunes:
+- √2 = 1.414213562...
+- π = 3.141592653...
+- e = 2.718281828...
+- √3 = 1.732050807...
+
+### Operaciones con irracionales:
+- **Suma/Resta**: Puede dar racional o irracional
+  - √2 + √2 = 2√2 (irracional)
+  - √2 + (-√2) = 0 (racional)
+- **Multiplicación**: Puede dar racional o irracional
+  - √2 × √2 = 2 (racional)
+  - √2 × √3 = √6 (irracional)
+- **División**: Puede dar racional o irracional
+  - √8 ÷ √2 = 2 (racional)
+  - √2 ÷ √3 = √(2/3) (irracional)
+
+## E) NÚMEROS REALES (ℝ) = ℚ ∪ I
+**Los números reales son la UNIÓN de racionales e irracionales**
+
+### Operaciones en ℝ:
+**¡TODAS las operaciones básicas SIEMPRE dan resultado en ℝ!** (excepto división por cero)
+- **Suma**: a + b ∈ ℝ para todo a,b ∈ ℝ
+- **Resta**: a - b ∈ ℝ para todo a,b ∈ ℝ
+- **Multiplicación**: a × b ∈ ℝ para todo a,b ∈ ℝ
+- **División**: a ÷ b ∈ ℝ para todo a,b ∈ ℝ, b ≠ 0
+
+**Ejemplo visual**: En tu celular, cuando ves que tienes $12.50 en tu cuenta, estás viendo un número real (específicamente, un racional).
